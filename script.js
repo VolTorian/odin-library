@@ -1,4 +1,5 @@
 const myLibrary = [];
+const cardsDisplay = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add-book");
 let counter = 0;
 
@@ -18,7 +19,8 @@ function addBookToLibrary() {
     let pageCount = prompt("Enter the number of pages the book has:", "-1");
     let isRead = prompt("Have you read the book already? [y/n]:", "n");
     myLibrary.push(new Book(author, title, pageCount, isRead, counter));
+    counter++;
 }
 
-myLibrary.push(new Book("Orson Scott Card", "Ender's Game", "324", "y", 0));
+myLibrary.push(new Book("Orson Scott Card", "Ender's Game", "324", "y", counter));
 counter++;
