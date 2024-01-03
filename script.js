@@ -22,5 +22,12 @@ function addBookToLibrary() {
     counter++;
 }
 
+function addBookCard() {
+    const newCard = document.createElement("div");
+    newCard.classList.add("card");
+
+    cardsDisplay.appendChild(newCard);
+}
+
 myLibrary.push(new Book("Orson Scott Card", "Ender's Game", "324", "y", counter));
 counter++;
