@@ -28,11 +28,28 @@ function addBookCard(book) {
     const newCard = document.createElement("div");
     newCard.classList.add("card");
 
-    newCard.textContent += `Title: ${book.title}\nAuthor: ${book.author}\nPage count: ${book.pageCount}\nAlready read?: ${book.isRead}`;
-    // console.log(newCard.textContent);
+    const newCardTitle = document.createElement("div");
+    newCardTitle.classList.add("title");
+    const newCardAuthor = document.createElement("div");
+    newCardAuthor.classList.add("author");
+    const newCardPageCount = document.createElement("div");
+    newCardPageCount.classList.add("page-count");
+    const newCardIsRead = document.createElement("div");
+    newCardIsRead.classList.add("is-read");
 
+    newCardTitle.textContent = `Title: ${book.title}`;
+    newCardAuthor.textContent = `Author: ${book.author}`;
+    newCardPageCount.textContent = `Number of pages: ${book.pageCount}`;
+    newCardIsRead.textContent = `Already read?: ${book.isRead}`;
+
+    newCard.appendChild(newCardTitle);
+    newCard.appendChild(newCardAuthor);
+    newCard.appendChild(newCardPageCount);
+    newCard.appendChild(newCardIsRead);
     cardsDisplay.appendChild(newCard);
 }
 
-myLibrary.push(new Book("Orson Scott Card", "Ender's Game", "324", "y", counter));
+let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", "y", counter);
+addBookCard(firstBook);
+myLibrary.push(firstBook);
 counter++;
