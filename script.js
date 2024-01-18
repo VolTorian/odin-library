@@ -27,6 +27,7 @@ function addBookToLibrary() {
 function addBookCard(book) {
     const newCard = document.createElement("div");
     newCard.classList.add("card");
+    newCard.setAttribute("id", book.libraryIndex);
 
     const newCardTitle = document.createElement("div");
     newCardTitle.classList.add("title");
@@ -46,7 +47,17 @@ function addBookCard(book) {
     newCard.appendChild(newCardAuthor);
     newCard.appendChild(newCardPageCount);
     newCard.appendChild(newCardIsRead);
+
+    const removeCardButton = document.createElement("button");
+    removeCardButton.textContent = "Remove";
+    removeCardButton.addEventListener("click", removeBook);
+    newCard.appendChild(removeCardButton);
+
     cardsDisplay.appendChild(newCard);
+}
+
+function removeBook() {
+    console.log("test remove book");
 }
 
 let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", "y", counter);
