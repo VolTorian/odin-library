@@ -18,13 +18,18 @@ function addBookToLibrary() {
     let title = prompt("Enter the book's title:", "Placeholder Title");
     let pageCount = prompt("Enter the number of pages the book has:", "-1");
     let isRead = prompt("Have you read the book already? [y/n]:", "n");
-    myLibrary.push(new Book(author, title, pageCount, isRead, counter));
+    let book = new Book(author, title, pageCount, isRead, counter)
+    addBookCard(book);
+    myLibrary.push(book);
     counter++;
 }
 
-function addBookCard() {
+function addBookCard(book) {
     const newCard = document.createElement("div");
     newCard.classList.add("card");
+
+    newCard.textContent += `Title: ${book.title}\nAuthor: ${book.author}\nPage count: ${book.pageCount}\nAlready read?: ${book.isRead}`;
+    // console.log(newCard.textContent);
 
     cardsDisplay.appendChild(newCard);
 }
