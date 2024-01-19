@@ -56,8 +56,14 @@ function addBookCard(book) {
     cardsDisplay.appendChild(newCard);
 }
 
-function removeBook() {
-    console.log("test remove book");
+function removeBook(e) {
+    const bookCard = e.target.parentNode;
+    let cardIndex = bookCard.id;
+
+    delete(myLibrary[cardIndex]);
+    bookCard.remove();
+
+    // console.log(`Book "${bookCard.firstChild.textContent}" was removed`);
 }
 
 let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", "y", counter);
