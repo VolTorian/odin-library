@@ -48,6 +48,14 @@ function addBookCard(book) {
     newCard.appendChild(newCardPageCount);
     newCard.appendChild(newCardIsRead);
 
+    const toggleReadButton = document.createElement("button");
+    toggleReadButton.textContent = "Not read";
+    if (book.isRead === "n") {
+        toggleReadButton.textContent = "Read";
+    }
+    // call function to toggle isRead
+    newCard.appendChild(toggleReadButton);
+
     const removeCardButton = document.createElement("button");
     removeCardButton.textContent = "Remove";
     removeCardButton.addEventListener("click", removeBook);
