@@ -53,7 +53,7 @@ function addBookCard(book) {
     if (book.isRead === "n") {
         toggleReadButton.textContent = "Read";
     }
-    // call function to toggle isRead
+    toggleReadButton.addEventListener("click", toggleRead);
     newCard.appendChild(toggleReadButton);
 
     const removeCardButton = document.createElement("button");
@@ -72,6 +72,26 @@ function removeBook(e) {
     bookCard.remove();
 
     // console.log(`Book "${bookCard.firstChild.textContent}" was removed`);
+}
+
+function toggleRead(e) {
+    const bookCard = e.target.parentNode;
+    let cardIndex = bookCard.id;
+
+    if (e.target.textContent === "Read") {
+        e.target.textContent = "Not read";
+        myLibrary[cardIndex].isRead = "y";
+    }
+    else if (e.target.textContent === "Not read") {
+        e.target.textContent = "Read";
+        myLibrary[cardIndex].isRead = "n";
+    }
+    else {
+        console.log("input validation where");
+    }
+
+    const cardIsRead = bookCard.querySelector("div:last-of-type")
+    cardIsRead.textContent = `Already read?: ${myLibrary[cardIndex].isRead}`;
 }
 
 let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", "y", counter);
