@@ -1,9 +1,11 @@
 const myLibrary = [];
 const cardsDisplay = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add-book");
+const addBookDialogButton = document.getElementById("add-book-modal");
 let counter = 0;
 
 addBookButton.addEventListener("click", addBookToLibrary);
+addBookDialogButton.addEventListener("click", () => document.getElementById("add-book-dialog").showModal());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
     this.author = author;

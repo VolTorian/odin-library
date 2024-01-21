@@ -12,8 +12,34 @@
     <body>
         <h1>Library</h1>
         <button id="add-book">Add book</button>
+        <button id="add-book-modal">Add book</button>
         <div id="book-cards">
             
         </div>
+
+        <dialog id="add-book-dialog">
+            <form action="https://httpbin.org/post" id="add-book-form">
+                <div>
+                    <p>Enter a new book</p>
+                    <div>
+                        <label for="input-title">Title:</label>
+                        <input id="input-title" name="input-title" type="text" required>
+                    </div>
+                    <div>
+                        <label for="input-author">Author:</label>
+                        <input id="input-author" name="input-author" type="text" required>
+                    </div>
+                    <div>
+                        <label for="input-page-count">Page count:</label>
+                        <input id="input-page-count" name="input-page-count" type="number" required>
+                    </div>
+                    <div>
+                        <label for="input-is-read">Already read?:</label>
+                        <input id="input-is-read" name="input-is-read" type="checkbox" required>
+                    </div>
+                </div>
+            </form>
+
+        </dialog>
     </body>
 </html>
