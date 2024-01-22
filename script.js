@@ -2,10 +2,14 @@ const myLibrary = [];
 const cardsDisplay = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add-book");
 const addBookDialogButton = document.getElementById("add-book-modal");
+const addBookForm = document.getElementById("add-book-form");
+const cancelAddBook = document.getElementById("cancel");
 let counter = 0;
 
 addBookButton.addEventListener("click", addBookToLibrary);
 addBookDialogButton.addEventListener("click", () => document.getElementById("add-book-dialog").showModal());
+addBookForm.addEventListener("submit", addBookModal);
+cancelAddBook.addEventListener("click", () => document.getElementById("add-book-dialog").close());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
     this.author = author;
@@ -24,6 +28,12 @@ function addBookToLibrary() {
     addBookCard(book);
     myLibrary.push(book);
     counter++;
+}
+
+function addBookModal() {
+    event.preventDefault();
+    document.getElementById("add-book-dialog").close();
+    console.log("testing submit");
 }
 
 function addBookCard(book) {

@@ -18,7 +18,7 @@
         </div>
 
         <dialog id="add-book-dialog">
-            <form action="https://httpbin.org/post" id="add-book-form">
+            <form id="add-book-form">
                 <div>
                     <p>Enter a new book</p>
                     <div>
@@ -35,9 +35,11 @@
                     </div>
                     <div>
                         <label for="input-is-read">Already read?:</label>
-                        <input id="input-is-read" name="input-is-read" type="checkbox" required>
+                        <input id="input-is-read" name="input-is-read" type="checkbox">
                     </div>
                 </div>
+                <button type="submit">Submit</button>
+                <button id="cancel" type="reset">Cancel</button>
             </form>
 
         </dialog>
