@@ -40,10 +40,10 @@ function addBookModal() {
     let pageCount = document.getElementById("input-page-count").value;
     let isRead;
     if (document.getElementById("input-is-read").checked === true) {
-        isRead = "y";
+        isRead = true;
     }
     else {
-        isRead = "n";
+        isRead = false;
     }
     
     let book = new Book(author, title, pageCount, isRead, counter);
@@ -78,7 +78,7 @@ function addBookCard(book) {
 
     const toggleReadButton = document.createElement("button");
     toggleReadButton.textContent = "Not read";
-    if (book.isRead === "n") {
+    if (book.isRead === false) {
         toggleReadButton.textContent = "Read";
     }
     toggleReadButton.addEventListener("click", toggleRead);
@@ -108,11 +108,11 @@ function toggleRead(e) {
 
     if (e.target.textContent === "Read") {
         e.target.textContent = "Not read";
-        myLibrary[cardIndex].isRead = "y";
+        myLibrary[cardIndex].isRead = true;
     }
     else if (e.target.textContent === "Not read") {
         e.target.textContent = "Read";
-        myLibrary[cardIndex].isRead = "n";
+        myLibrary[cardIndex].isRead = false;
     }
     else {
         console.log("input validation where");
@@ -122,7 +122,7 @@ function toggleRead(e) {
     cardIsRead.textContent = `Already read?: ${myLibrary[cardIndex].isRead}`;
 }
 
-let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", "y", counter);
+let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", true, counter);
 addBookCard(firstBook);
 myLibrary.push(firstBook);
 counter++;
