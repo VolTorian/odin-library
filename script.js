@@ -33,7 +33,23 @@ function addBookToLibrary() {
 function addBookModal() {
     event.preventDefault();
     document.getElementById("add-book-dialog").close();
-    console.log("testing submit");
+    // console.log("testing submit");
+
+    let author = document.getElementById("input-author").value;
+    let title = document.getElementById("input-title").value;
+    let pageCount = document.getElementById("input-page-count").value;
+    let isRead;
+    if (document.getElementById("input-is-read").checked === true) {
+        isRead = "y";
+    }
+    else {
+        isRead = "n";
+    }
+    
+    let book = new Book(author, title, pageCount, isRead, counter);
+    addBookCard(book);
+    myLibrary.push(book);
+    counter++;
 }
 
 function addBookCard(book) {
