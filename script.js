@@ -27,6 +27,7 @@ function addBookToLibrary() {
     let isRead = document.getElementById("input-is-read").checked;
     
     let book = new Book(author, title, pageCount, isRead, counter);
+    addBookForm.reset();
     addBookCard(book);
     myLibrary.push(book);
     counter++;
