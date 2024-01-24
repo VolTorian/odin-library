@@ -23,7 +23,7 @@ function addBookToLibrary() {
 
     let author = document.getElementById("input-author").value;
     let title = document.getElementById("input-title").value;
-    let pageCount = document.getElementById("input-page-count").value;
+    let pageCount = Math.floor(document.getElementById("input-page-count").value);
     let isRead = document.getElementById("input-is-read").checked;
     
     let book = new Book(author, title, pageCount, isRead, counter);
