@@ -1,14 +1,12 @@
 const myLibrary = [];
 const cardsDisplay = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add-book");
-const addBookDialogButton = document.getElementById("add-book-modal");
 const addBookForm = document.getElementById("add-book-form");
 const cancelAddBook = document.getElementById("cancel");
 let counter = 0;
 
-addBookButton.addEventListener("click", addBookToLibrary);
-addBookDialogButton.addEventListener("click", () => document.getElementById("add-book-dialog").showModal());
-addBookForm.addEventListener("submit", addBookModal);
+addBookButton.addEventListener("click", () => document.getElementById("add-book-dialog").showModal());
+addBookForm.addEventListener("submit", addBookToLibrary);
 cancelAddBook.addEventListener("click", () => document.getElementById("add-book-dialog").close());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
@@ -20,31 +18,13 @@ function Book(author, title, pageCount, isRead, libraryIndex) {
 }
 
 function addBookToLibrary() {
-    let author = prompt("Enter the author of the book:", "Placeholder Author");
-    let title = prompt("Enter the book's title:", "Placeholder Title");
-    let pageCount = prompt("Enter the number of pages the book has:", "-1");
-    let isRead = prompt("Have you read the book already? [y/n]:", "n");
-    let book = new Book(author, title, pageCount, isRead, counter)
-    addBookCard(book);
-    myLibrary.push(book);
-    counter++;
-}
-
-function addBookModal() {
     event.preventDefault();
     document.getElementById("add-book-dialog").close();
-    // console.log("testing submit");
 
     let author = document.getElementById("input-author").value;
     let title = document.getElementById("input-title").value;
     let pageCount = document.getElementById("input-page-count").value;
-    let isRead;
-    if (document.getElementById("input-is-read").checked === true) {
-        isRead = true;
-    }
-    else {
-        isRead = false;
-    }
+    let isRead = document.getElementById("input-is-read").checked;
     
     let book = new Book(author, title, pageCount, isRead, counter);
     addBookCard(book);
