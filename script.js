@@ -50,7 +50,12 @@ function addBookCard(book) {
     newCardTitle.textContent = `Title: ${book.title}`;
     newCardAuthor.textContent = `Author: ${book.author}`;
     newCardPageCount.textContent = `Number of pages: ${book.pageCount}`;
-    newCardIsRead.textContent = `Already read?: ${book.isRead}`;
+    if (book.isRead) {
+        newCardIsRead.textContent = "Already read";
+    }
+    else {
+        newCardIsRead.textContent = "Not yet read";
+    }
 
     newCard.appendChild(newCardTitle);
     newCard.appendChild(newCardAuthor);
@@ -86,21 +91,21 @@ function removeBook(e) {
 function toggleRead(e) {
     const bookCard = e.target.parentNode;
     let cardIndex = bookCard.id;
+    const cardIsRead = bookCard.querySelector("div:last-of-type")
 
-    if (e.target.textContent === "Read") {
-        e.target.textContent = "Not read";
-        myLibrary[cardIndex].isRead = true;
-    }
-    else if (e.target.textContent === "Not read") {
+    if (myLibrary[cardIndex].isRead) {
         e.target.textContent = "Read";
+        cardIsRead.textContent = "Not yet read";
         myLibrary[cardIndex].isRead = false;
+    }
+    else if (!myLibrary[cardIndex].isRead) {
+        e.target.textContent = "Not read";
+        cardIsRead.textContent = "Already read";
+        myLibrary[cardIndex].isRead = true;
     }
     else {
         console.log("input validation where");
     }
-
-    const cardIsRead = bookCard.querySelector("div:last-of-type")
-    cardIsRead.textContent = `Already read?: ${myLibrary[cardIndex].isRead}`;
 }
 
 let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", true, counter);
