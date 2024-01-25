@@ -2,11 +2,13 @@ const myLibrary = [];
 const cardsDisplay = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add-book");
 const addBookForm = document.getElementById("add-book-form");
+const submitBookButton = document.getElementById("submit-book-button");
 const cancelAddBook = document.getElementById("cancel");
 let counter = 0;
 
 addBookButton.addEventListener("click", () => document.getElementById("add-book-dialog").showModal());
-addBookForm.addEventListener("submit", addBookToLibrary);
+// addBookForm.addEventListener("submit", addBookToLibrary);
+submitBookButton.addEventListener("click", submitBook);
 cancelAddBook.addEventListener("click", () => document.getElementById("add-book-dialog").close());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
@@ -15,6 +17,12 @@ function Book(author, title, pageCount, isRead, libraryIndex) {
     this.pageCount = pageCount;
     this.isRead = isRead;
     this.libraryIndex = libraryIndex;
+}
+
+function submitBook(e) {
+    // check if book dialog was activated by adding or editing a book
+    // if adding book, add book functions
+    // else, edit book functions
 }
 
 function addBookToLibrary() {
@@ -70,12 +78,22 @@ function addBookCard(book) {
     toggleReadButton.addEventListener("click", toggleRead);
     newCard.appendChild(toggleReadButton);
 
+    const editCardButton = document.createElement("button");
+    editCardButton.textContent = "Edit";
+    editCardButton.addEventListener("click", editBook);
+    newCard.appendChild(editCardButton);
+
     const removeCardButton = document.createElement("button");
     removeCardButton.textContent = "Remove";
     removeCardButton.addEventListener("click", removeBook);
     newCard.appendChild(removeCardButton);
 
     cardsDisplay.appendChild(newCard);
+}
+
+function editBook(e) {
+    const bookCard = e.target.parentNode;
+    let cardIndex = bookCard.id;
 }
 
 function removeBook(e) {
