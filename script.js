@@ -2,13 +2,15 @@ const myLibrary = [];
 const cardsDisplay = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add-book");
 const addBookForm = document.getElementById("add-book-form");
-const submitBookButton = document.getElementById("submit-book-button");
+const submitBookAddButton = document.getElementById("submit-book-add");
+const submitBookEditButton = document.getElementById("submit-book-edit");
 const cancelAddBook = document.getElementById("cancel");
 let counter = 0;
 
-addBookButton.addEventListener("click", () => document.getElementById("add-book-dialog").showModal());
+addBookButton.addEventListener("click", openAddBookDialog);
 // addBookForm.addEventListener("submit", addBookToLibrary);
-submitBookButton.addEventListener("click", submitBook);
+submitBookAddButton.addEventListener("click", addBookToLibrary);
+submitBookEditButton.addEventListener("click", editBook);
 cancelAddBook.addEventListener("click", () => document.getElementById("add-book-dialog").close());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
@@ -19,16 +21,22 @@ function Book(author, title, pageCount, isRead, libraryIndex) {
     this.libraryIndex = libraryIndex;
 }
 
-function submitBook(e) {
-    // check if book dialog was activated by adding or editing a book
-    // if adding book, add book functions
-    // else, edit book functions
+function openAddBookDialog() {
+    document.getElementById("add-book-dialog").showModal();
+    document.getElementById("dialog-header").textContent = "Enter a new book";
+    
+    submitBookAddButton.style.display = "inline-block";
+    submitBookEditButton.style.display = "none";
+}
+
+function openEditBookDialog(e) {
+
 }
 
 function addBookToLibrary() {
     event.preventDefault();
     document.getElementById("add-book-dialog").close();
-
+    
     let author = document.getElementById("input-author").value;
     let title = document.getElementById("input-title").value;
     let pageCount = Math.floor(document.getElementById("input-page-count").value);
@@ -80,7 +88,7 @@ function addBookCard(book) {
 
     const editCardButton = document.createElement("button");
     editCardButton.textContent = "Edit";
-    editCardButton.addEventListener("click", editBook);
+    editCardButton.addEventListener("click", openEditBookDialog);
     newCard.appendChild(editCardButton);
 
     const removeCardButton = document.createElement("button");
