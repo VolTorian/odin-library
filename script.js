@@ -6,11 +6,12 @@ const submitBookAddButton = document.getElementById("submit-book-add");
 const submitBookEditButton = document.getElementById("submit-book-edit");
 const cancelAddBook = document.getElementById("cancel");
 let counter = 0;
+let submitType = "add";
 
 addBookButton.addEventListener("click", openAddBookDialog);
-// addBookForm.addEventListener("submit", addBookToLibrary);
-submitBookAddButton.addEventListener("click", addBookToLibrary);
-submitBookEditButton.addEventListener("click", editBook);
+addBookForm.addEventListener("submit", submitBook);
+// submitBookAddButton.addEventListener("submit", addBookToLibrary);
+// submitBookEditButton.addEventListener("click", editBook);
 cancelAddBook.addEventListener("click", () => document.getElementById("add-book-dialog").close());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
@@ -21,12 +22,26 @@ function Book(author, title, pageCount, isRead, libraryIndex) {
     this.libraryIndex = libraryIndex;
 }
 
+function submitBook(e) {
+    console.log(e);
+    event.preventDefault();
+    if (submitType === "add") {
+        // console.log("adding book");
+        addBookToLibrary();
+    }
+    else if (submitType === "edit") {
+        // console.log("editing book");
+        editBook();
+    }
+}
+
 function openAddBookDialog() {
     document.getElementById("add-book-dialog").showModal();
     document.getElementById("dialog-header").textContent = "Enter a new book";
     
     submitBookAddButton.style.display = "inline-block";
     submitBookEditButton.style.display = "none";
+    submitType = "add";
 }
 
 function openEditBookDialog(e) {
@@ -37,6 +52,7 @@ function openEditBookDialog(e) {
     submitBookEditButton.style.display = "inline-block";
 
     submitBookEditButton.value = e.target.parentNode.id;
+    submitType = "edit";
 }
 
 function addBookToLibrary() {
@@ -105,10 +121,10 @@ function addBookCard(book) {
     cardsDisplay.appendChild(newCard);
 }
 
-function editBook(e) {
+function editBook() {
     document.getElementById("add-book-dialog").close();
-    const bookCard = document.getElementById(e.target.value);
-    let cardIndex = e.target.value;
+    let cardIndex = document.getElementById("submit-book-edit").value;
+    const bookCard = document.getElementById(cardIndex);
 
     myLibrary[cardIndex].title = document.getElementById("input-title").value;
     myLibrary[cardIndex].author = document.getElementById("input-author").value;
