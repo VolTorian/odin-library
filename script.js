@@ -30,15 +30,21 @@ function openAddBookDialog() {
 }
 
 function openEditBookDialog(e) {
+    document.getElementById("add-book-dialog").showModal();
+    document.getElementById("dialog-header").textContent = "Edit book";
+    
+    submitBookAddButton.style.display = "none";
+    submitBookEditButton.style.display = "inline-block";
 
+    submitBookEditButton.value = e.target.parentNode.id;
 }
 
 function addBookToLibrary() {
     event.preventDefault();
     document.getElementById("add-book-dialog").close();
     
-    let author = document.getElementById("input-author").value;
     let title = document.getElementById("input-title").value;
+    let author = document.getElementById("input-author").value;
     let pageCount = Math.floor(document.getElementById("input-page-count").value);
     let isRead = document.getElementById("input-is-read").checked;
     
@@ -100,8 +106,24 @@ function addBookCard(book) {
 }
 
 function editBook(e) {
-    const bookCard = e.target.parentNode;
-    let cardIndex = bookCard.id;
+    document.getElementById("add-book-dialog").close();
+    const bookCard = document.getElementById(e.target.value);
+    let cardIndex = e.target.value;
+
+    myLibrary[cardIndex].title = document.getElementById("input-title").value;
+    myLibrary[cardIndex].author = document.getElementById("input-author").value;
+    myLibrary[cardIndex].pageCount = Math.floor(document.getElementById("input-page-count").value);
+    myLibrary[cardIndex].isRead = document.getElementById("input-is-read").checked;
+
+    bookCard.querySelector(".title").textContent = `Title: ${myLibrary[cardIndex].title}`;
+    bookCard.querySelector(".author").textContent = `Author: ${myLibrary[cardIndex].author}`;
+    bookCard.querySelector(".page-count").textContent = `Page count: ${myLibrary[cardIndex].pageCount}`;
+    if (myLibrary[cardIndex].isRead) {
+        bookCard.querySelector(".is-read").textContent = "Already read";
+    }
+    else {
+        bookCard.querySelector(".is-read").textContent = "Not yet read";
+    }
 }
 
 function removeBook(e) {
