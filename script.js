@@ -8,7 +8,7 @@ const cancelAddBook = document.getElementById("cancel");
 let counter = 0;
 let submitType = "add";
 
-addBookButton.addEventListener("click", openAddBookDialog);
+addBookButton.addEventListener("click", openBookDialog);
 addBookForm.addEventListener("submit", submitBook);
 // submitBookAddButton.addEventListener("submit", addBookToLibrary);
 // submitBookEditButton.addEventListener("click", editBook);
@@ -22,37 +22,34 @@ function Book(author, title, pageCount, isRead, libraryIndex) {
     this.libraryIndex = libraryIndex;
 }
 
+function openBookDialog(e) {
+    if (e.target.id === "add-book") {
+        // console.log("adding book");
+        document.getElementById("dialog-header").textContent = "Enter a new book";
+        submitBookAddButton.style.display = "inline-block";
+        submitBookEditButton.style.display = "none";
+        submitType = "add";
+    }
+    else {
+        // console.log("editing book");
+        document.getElementById("dialog-header").textContent = "Edit book";
+        submitBookAddButton.style.display = "none";
+        submitBookEditButton.style.display = "inline-block";
+        submitBookEditButton.value = e.target.parentNode.id;
+        submitType = "edit";
+    }
+    document.getElementById("add-book-dialog").showModal();
+}
+
 function submitBook(e) {
-    console.log(e);
+    // console.log(e);
     event.preventDefault();
     if (submitType === "add") {
-        // console.log("adding book");
         addBookToLibrary();
     }
     else if (submitType === "edit") {
-        // console.log("editing book");
         editBook();
     }
-}
-
-function openAddBookDialog() {
-    document.getElementById("add-book-dialog").showModal();
-    document.getElementById("dialog-header").textContent = "Enter a new book";
-    
-    submitBookAddButton.style.display = "inline-block";
-    submitBookEditButton.style.display = "none";
-    submitType = "add";
-}
-
-function openEditBookDialog(e) {
-    document.getElementById("add-book-dialog").showModal();
-    document.getElementById("dialog-header").textContent = "Edit book";
-    
-    submitBookAddButton.style.display = "none";
-    submitBookEditButton.style.display = "inline-block";
-
-    submitBookEditButton.value = e.target.parentNode.id;
-    submitType = "edit";
 }
 
 function addBookToLibrary() {
@@ -110,7 +107,7 @@ function addBookCard(book) {
 
     const editCardButton = document.createElement("button");
     editCardButton.textContent = "Edit";
-    editCardButton.addEventListener("click", openEditBookDialog);
+    editCardButton.addEventListener("click", openBookDialog);
     newCard.appendChild(editCardButton);
 
     const removeCardButton = document.createElement("button");
