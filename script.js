@@ -10,8 +10,6 @@ let submitType = "add";
 
 addBookButton.addEventListener("click", openBookDialog);
 addBookForm.addEventListener("submit", submitBook);
-// submitBookAddButton.addEventListener("submit", addBookToLibrary);
-// submitBookEditButton.addEventListener("click", editBook);
 cancelAddBook.addEventListener("click", () => document.getElementById("add-book-dialog").close());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
@@ -24,14 +22,12 @@ function Book(author, title, pageCount, isRead, libraryIndex) {
 
 function openBookDialog(e) {
     if (e.target.id === "add-book") {
-        // console.log("adding book");
         document.getElementById("dialog-header").textContent = "Enter a new book";
         submitBookAddButton.style.display = "inline-block";
         submitBookEditButton.style.display = "none";
         submitType = "add";
     }
     else {
-        // console.log("editing book");
         document.getElementById("dialog-header").textContent = "Edit book";
         submitBookAddButton.style.display = "none";
         submitBookEditButton.style.display = "inline-block";
@@ -41,8 +37,7 @@ function openBookDialog(e) {
     document.getElementById("add-book-dialog").showModal();
 }
 
-function submitBook(e) {
-    // console.log(e);
+function submitBook() {
     event.preventDefault();
     if (submitType === "add") {
         addBookToLibrary();
@@ -53,7 +48,6 @@ function submitBook(e) {
 }
 
 function addBookToLibrary() {
-    event.preventDefault();
     document.getElementById("add-book-dialog").close();
     
     let title = document.getElementById("input-title").value;
@@ -145,8 +139,6 @@ function removeBook(e) {
 
     delete(myLibrary[cardIndex]);
     bookCard.remove();
-
-    // console.log(`Book "${bookCard.firstChild.textContent}" was removed`);
 }
 
 function toggleRead(e) {
