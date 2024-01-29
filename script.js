@@ -33,6 +33,7 @@ function openBookDialog(e) {
         submitBookEditButton.style.display = "inline-block";
         submitBookEditButton.value = e.target.parentNode.id;
         submitType = "edit";
+        editBookPrefill();
     }
     document.getElementById("add-book-dialog").showModal();
 }
@@ -110,6 +111,16 @@ function addBookCard(book) {
     newCard.appendChild(removeCardButton);
 
     cardsDisplay.appendChild(newCard);
+}
+
+function editBookPrefill() {
+    let cardIndex = document.getElementById("submit-book-edit").value;
+    const bookCard = document.getElementById(cardIndex);
+
+    document.getElementById("input-title").value = myLibrary[cardIndex].title;
+    document.getElementById("input-author").value = myLibrary[cardIndex].author;
+    document.getElementById("input-page-count").value = myLibrary[cardIndex].pageCount;
+    document.getElementById("input-is-read").checked = myLibrary[cardIndex].isRead;
 }
 
 function editBook() {
