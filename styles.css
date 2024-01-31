@@ -21,6 +21,9 @@ h1 {
     width: 200px;
     height: 200px;
     padding: 15px;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -30,4 +33,9 @@ h1 {
 
 .author, .page-count, .is-read {
     font-size: 1rem;
+}
+
+.card-controls {
+    /* position: absolute; */
+    margin-top: auto;
 }

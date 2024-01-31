@@ -92,6 +92,9 @@ function addBookCard(book) {
     newCard.appendChild(newCardPageCount);
     newCard.appendChild(newCardIsRead);
 
+    const cardControls = document.createElement("div");
+    cardControls.classList.add("card-controls");
+
     const toggleReadButton = document.createElement("button");
     toggleReadButton.textContent = "Not read";
     if (book.isRead === false) {
@@ -99,18 +102,19 @@ function addBookCard(book) {
     }
     toggleReadButton.addEventListener("click", toggleRead);
     toggleReadButton.classList.add("toggle-read");
-    newCard.appendChild(toggleReadButton);
+    cardControls.appendChild(toggleReadButton);
 
     const editCardButton = document.createElement("button");
     editCardButton.textContent = "Edit";
     editCardButton.addEventListener("click", openBookDialog);
-    newCard.appendChild(editCardButton);
+    cardControls.appendChild(editCardButton);
 
     const removeCardButton = document.createElement("button");
     removeCardButton.textContent = "Remove";
     removeCardButton.addEventListener("click", removeBook);
-    newCard.appendChild(removeCardButton);
+    cardControls.appendChild(removeCardButton);
 
+    newCard.append(cardControls);
     cardsDisplay.appendChild(newCard);
 }
 
@@ -153,9 +157,9 @@ function removeBook(e) {
 }
 
 function toggleRead(e) {
-    const bookCard = e.target.parentNode;
+    const bookCard = e.target.parentNode.parentNode;
     let cardIndex = bookCard.id;
-    const cardIsRead = bookCard.querySelector("div:last-of-type")
+    const cardIsRead = bookCard.querySelector(".is-read");
 
     if (myLibrary[cardIndex].isRead) {
         e.target.textContent = "Read";
