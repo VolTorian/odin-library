@@ -133,7 +133,7 @@ function editBook(cardIndex) {
 
     bookCard.querySelector(".title").textContent = `Title: ${myLibrary[cardIndex].title}`;
     bookCard.querySelector(".author").textContent = `Author: ${myLibrary[cardIndex].author}`;
-    bookCard.querySelector(".page-count").textContent = `Page count: ${myLibrary[cardIndex].pageCount}`;
+    bookCard.querySelector(".page-count").textContent = `Number of pages: ${myLibrary[cardIndex].pageCount}`;
     if (myLibrary[cardIndex].isRead) {
         toggleReadButton.textContent = "Not read";
         bookCard.querySelector(".is-read").textContent = "Already read";
