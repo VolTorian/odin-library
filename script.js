@@ -31,7 +31,7 @@ function openBookDialog(e) {
         document.getElementById("dialog-header").textContent = "Edit book";
         submitBookAddButton.style.display = "none";
         submitBookEditButton.style.display = "inline-block";
-        submitBookEditButton.value = e.target.parentNode.id;
+        submitBookEditButton.value = e.target.parentNode.parentNode.id;
         submitType = "edit";
         editBookPrefill(submitBookEditButton.value);
     }
@@ -149,7 +149,7 @@ function editBook(cardIndex) {
 }
 
 function removeBook(e) {
-    const bookCard = e.target.parentNode;
+    const bookCard = e.target.parentNode.parentNode;
     let cardIndex = bookCard.id;
 
     delete(myLibrary[cardIndex]);
