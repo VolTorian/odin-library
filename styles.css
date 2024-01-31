@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 html {
     background-color: cyan;
 }
@@ -14,6 +18,16 @@ h1 {
 
 .card {
     background-color: yellow;
-    width: 300px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
+    padding: 15px;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.author, .page-count, .is-read {
+    font-size: 1rem;
 }

@@ -77,9 +77,9 @@ function addBookCard(book) {
     const newCardIsRead = document.createElement("div");
     newCardIsRead.classList.add("is-read");
 
-    newCardTitle.textContent = `Title: ${book.title}`;
-    newCardAuthor.textContent = `Author: ${book.author}`;
-    newCardPageCount.textContent = `Number of pages: ${book.pageCount}`;
+    newCardTitle.textContent = `${book.title}`;
+    newCardAuthor.textContent = `by ${book.author}`;
+    newCardPageCount.textContent = `${book.pageCount} pages`;
     if (book.isRead) {
         newCardIsRead.textContent = "Already read";
     }
@@ -131,9 +131,9 @@ function editBook(cardIndex) {
     myLibrary[cardIndex].pageCount = Math.floor(document.getElementById("input-page-count").value);
     myLibrary[cardIndex].isRead = document.getElementById("input-is-read").checked;
 
-    bookCard.querySelector(".title").textContent = `Title: ${myLibrary[cardIndex].title}`;
-    bookCard.querySelector(".author").textContent = `Author: ${myLibrary[cardIndex].author}`;
-    bookCard.querySelector(".page-count").textContent = `Number of pages: ${myLibrary[cardIndex].pageCount}`;
+    bookCard.querySelector(".title").textContent = `${myLibrary[cardIndex].title}`;
+    bookCard.querySelector(".author").textContent = `by ${myLibrary[cardIndex].author}`;
+    bookCard.querySelector(".page-count").textContent = `${myLibrary[cardIndex].pageCount} pages`;
     if (myLibrary[cardIndex].isRead) {
         toggleReadButton.textContent = "Not read";
         bookCard.querySelector(".is-read").textContent = "Already read";
