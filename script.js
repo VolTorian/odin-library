@@ -98,6 +98,7 @@ function addBookCard(book) {
         toggleReadButton.textContent = "Read";
     }
     toggleReadButton.addEventListener("click", toggleRead);
+    toggleReadButton.classList.add("toggle-read");
     newCard.appendChild(toggleReadButton);
 
     const editCardButton = document.createElement("button");
@@ -123,6 +124,7 @@ function editBookPrefill(cardIndex) {
 function editBook(cardIndex) {
     document.getElementById("add-book-dialog").close();
     const bookCard = document.getElementById(cardIndex);
+    const toggleReadButton = bookCard.querySelector(".toggle-read");
 
     myLibrary[cardIndex].title = document.getElementById("input-title").value;
     myLibrary[cardIndex].author = document.getElementById("input-author").value;
@@ -133,9 +135,11 @@ function editBook(cardIndex) {
     bookCard.querySelector(".author").textContent = `Author: ${myLibrary[cardIndex].author}`;
     bookCard.querySelector(".page-count").textContent = `Page count: ${myLibrary[cardIndex].pageCount}`;
     if (myLibrary[cardIndex].isRead) {
+        toggleReadButton.textContent = "Not read";
         bookCard.querySelector(".is-read").textContent = "Already read";
     }
     else {
+        toggleReadButton.textContent = "Read";
         bookCard.querySelector(".is-read").textContent = "Not yet read";
     }
 }
