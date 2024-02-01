@@ -104,13 +104,13 @@ function addBookCard(book) {
     toggleReadButton.classList.add("toggle-read");
     cardControls.appendChild(toggleReadButton);
 
-    const editCardButton = document.createElement("button");
-    editCardButton.textContent = "Edit";
+    const editCardButton = document.createElement("img");
+    editCardButton.setAttribute("src", "./images/cog-outline.svg");
     editCardButton.addEventListener("click", openBookDialog);
     cardControls.appendChild(editCardButton);
 
-    const removeCardButton = document.createElement("button");
-    removeCardButton.textContent = "Remove";
+    const removeCardButton = document.createElement("img");
+    removeCardButton.setAttribute("src", "./images/delete-outline.svg");
     removeCardButton.addEventListener("click", removeBook);
     cardControls.appendChild(removeCardButton);
 

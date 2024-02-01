@@ -21,7 +21,6 @@ h1 {
     width: 200px;
     height: 200px;
     padding: 15px;
-    /* position: relative; */
     display: flex;
     flex-direction: column;
 }
@@ -36,6 +35,12 @@ h1 {
 }
 
 .card-controls {
-    /* position: absolute; */
+    display: flex;
     margin-top: auto;
+    justify-content: space-between;
+}
+
+.card-controls > img {
+    width: 40px;
+    height: 40px;
 }
