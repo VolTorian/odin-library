@@ -95,10 +95,12 @@ function addBookCard(book) {
     const cardControls = document.createElement("div");
     cardControls.classList.add("card-controls");
 
-    const toggleReadButton = document.createElement("button");
-    toggleReadButton.textContent = "Not read";
+    const toggleReadButton = document.createElement("img");
+    toggleReadButton.setAttribute("src", "./images/eye-remove-outline.svg");
+    // toggleReadButton.textContent = "Not read";
     if (book.isRead === false) {
-        toggleReadButton.textContent = "Read";
+        toggleReadButton.setAttribute("src", "./images/eye-check-outline.svg");
+    //     toggleReadButton.textContent = "Read";
     }
     toggleReadButton.addEventListener("click", toggleRead);
     toggleReadButton.classList.add("toggle-read");
@@ -160,14 +162,17 @@ function toggleRead(e) {
     const bookCard = e.target.parentNode.parentNode;
     let cardIndex = bookCard.id;
     const cardIsRead = bookCard.querySelector(".is-read");
+    const toggleReadButton = bookCard.querySelector(".toggle-read");
 
     if (myLibrary[cardIndex].isRead) {
-        e.target.textContent = "Read";
+        // e.target.textContent = "Read";
+        toggleReadButton.src = "./images/eye-check-outline.svg";
         cardIsRead.textContent = "Not yet read";
         myLibrary[cardIndex].isRead = false;
     }
     else if (!myLibrary[cardIndex].isRead) {
-        e.target.textContent = "Not read";
+        // e.target.textContent = "Not read";
+        toggleReadButton.src = "./images/eye-remove-outline.svg";
         cardIsRead.textContent = "Already read";
         myLibrary[cardIndex].isRead = true;
     }
