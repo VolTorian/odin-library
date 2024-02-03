@@ -140,12 +140,15 @@ function editBook(cardIndex) {
     bookCard.querySelector(".title").textContent = `${myLibrary[cardIndex].title}`;
     bookCard.querySelector(".author").textContent = `by ${myLibrary[cardIndex].author}`;
     bookCard.querySelector(".page-count").textContent = `${myLibrary[cardIndex].pageCount} pages`;
+
     if (myLibrary[cardIndex].isRead) {
-        toggleReadButton.textContent = "Not read";
+        // toggleReadButton.textContent = "Not read";
+        toggleReadButton.src = "./images/eye-remove-outline.svg";
         bookCard.querySelector(".is-read").textContent = "Already read";
     }
     else {
-        toggleReadButton.textContent = "Read";
+        // toggleReadButton.textContent = "Read";
+        toggleReadButton.src = "./images/eye-check-outline.svg";
         bookCard.querySelector(".is-read").textContent = "Not yet read";
     }
 }
