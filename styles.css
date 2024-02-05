@@ -10,6 +10,11 @@ h1 {
     background-color: yellow;
 }
 
+#add-book{
+    width: 100px;
+    margin: auto;
+}
+
 #book-cards {
     display: flex;
     gap: 20px;
