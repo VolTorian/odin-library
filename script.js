@@ -1,7 +1,7 @@
 const myLibrary = [];
 const cardsDisplay = document.getElementById("book-cards");
 const addBookButton = document.getElementById("add-book");
-const addBookForm = document.getElementById("add-book-form");
+const bookForm = document.getElementById("book-form");
 const submitBookAddButton = document.getElementById("submit-book-add");
 const submitBookEditButton = document.getElementById("submit-book-edit");
 const cancelAddBook = document.getElementById("cancel");
@@ -9,8 +9,8 @@ let counter = 0;
 let submitType = "add";
 
 addBookButton.addEventListener("click", openBookDialog);
-addBookForm.addEventListener("submit", submitBook);
-cancelAddBook.addEventListener("click", () => document.getElementById("add-book-dialog").close());
+bookForm.addEventListener("submit", submitBook);
+cancelAddBook.addEventListener("click", () => document.getElementById("book-dialog").close());
 
 function Book(author, title, pageCount, isRead, libraryIndex) {
     this.author = author;
@@ -35,7 +35,7 @@ function openBookDialog(e) {
         submitType = "edit";
         editBookPrefill(submitBookEditButton.value);
     }
-    document.getElementById("add-book-dialog").showModal();
+    document.getElementById("book-dialog").showModal();
 }
 
 function submitBook() {
@@ -49,7 +49,7 @@ function submitBook() {
 }
 
 function addBookToLibrary() {
-    document.getElementById("add-book-dialog").close();
+    document.getElementById("book-dialog").close();
     
     let title = document.getElementById("input-title").value;
     let author = document.getElementById("input-author").value;
@@ -57,7 +57,7 @@ function addBookToLibrary() {
     let isRead = document.getElementById("input-is-read").checked;
     
     let book = new Book(author, title, pageCount, isRead, counter);
-    addBookForm.reset();
+    bookForm.reset();
     addBookCard(book);
     myLibrary.push(book);
     counter++;
@@ -128,7 +128,7 @@ function editBookPrefill(cardIndex) {
 }
 
 function editBook(cardIndex) {
-    document.getElementById("add-book-dialog").close();
+    document.getElementById("book-dialog").close();
     const bookCard = document.getElementById(cardIndex);
     const toggleReadButton = bookCard.querySelector(".toggle-read");
 
