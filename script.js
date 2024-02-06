@@ -66,7 +66,7 @@ function addBookToLibrary() {
 function addBookCard(book) {
     const newCard = document.createElement("div");
     newCard.classList.add("card");
-    newCard.setAttribute("id", book.libraryIndex);
+    newCard.id = book.libraryIndex;
 
     const newCardTitle = document.createElement("div");
     newCardTitle.classList.add("title");
@@ -96,23 +96,24 @@ function addBookCard(book) {
     cardControls.classList.add("card-controls");
 
     const toggleReadButton = document.createElement("img");
-    toggleReadButton.setAttribute("src", "./images/eye-remove-outline.svg");
-    // toggleReadButton.textContent = "Not read";
-    if (book.isRead === false) {
-        toggleReadButton.setAttribute("src", "./images/eye-check-outline.svg");
-    //     toggleReadButton.textContent = "Read";
+    if (book.isRead) {
+        toggleReadButton.src = "./images/eye-remove-outline.svg";
     }
+    else {
+        toggleReadButton.src = "./images/eye-check-outline.svg";
+    }
+
     toggleReadButton.addEventListener("click", toggleRead);
     toggleReadButton.classList.add("toggle-read");
     cardControls.appendChild(toggleReadButton);
 
     const editCardButton = document.createElement("img");
-    editCardButton.setAttribute("src", "./images/cog-outline.svg");
+    editCardButton.src = "./images/cog-outline.svg";
     editCardButton.addEventListener("click", openBookDialog);
     cardControls.appendChild(editCardButton);
 
     const removeCardButton = document.createElement("img");
-    removeCardButton.setAttribute("src", "./images/delete-outline.svg");
+    removeCardButton.src = "./images/delete-outline.svg";
     removeCardButton.addEventListener("click", removeBook);
     cardControls.appendChild(removeCardButton);
 
@@ -142,12 +143,10 @@ function editBook(cardIndex) {
     bookCard.querySelector(".page-count").textContent = `${myLibrary[cardIndex].pageCount} pages`;
 
     if (myLibrary[cardIndex].isRead) {
-        // toggleReadButton.textContent = "Not read";
         toggleReadButton.src = "./images/eye-remove-outline.svg";
         bookCard.querySelector(".is-read").textContent = "Already read";
     }
     else {
-        // toggleReadButton.textContent = "Read";
         toggleReadButton.src = "./images/eye-check-outline.svg";
         bookCard.querySelector(".is-read").textContent = "Not yet read";
     }
@@ -168,19 +167,14 @@ function toggleRead(e) {
     const toggleReadButton = bookCard.querySelector(".toggle-read");
 
     if (myLibrary[cardIndex].isRead) {
-        // e.target.textContent = "Read";
         toggleReadButton.src = "./images/eye-check-outline.svg";
         cardIsRead.textContent = "Not yet read";
         myLibrary[cardIndex].isRead = false;
     }
-    else if (!myLibrary[cardIndex].isRead) {
-        // e.target.textContent = "Not read";
+    else {
         toggleReadButton.src = "./images/eye-remove-outline.svg";
         cardIsRead.textContent = "Already read";
         myLibrary[cardIndex].isRead = true;
-    }
-    else {
-        console.log("input validation where");
     }
 }
 
