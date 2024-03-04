@@ -12,12 +12,14 @@ addBookButton.addEventListener("click", openBookDialog);
 bookForm.addEventListener("submit", submitBook);
 cancelAddBook.addEventListener("click", () => document.getElementById("book-dialog").close());
 
-function Book(author, title, pageCount, isRead, libraryIndex) {
-    this.author = author;
-    this.title = title;
-    this.pageCount = pageCount;
-    this.isRead = isRead;
-    this.libraryIndex = libraryIndex;
+class Book {
+    constructor(author, title, pageCount, isRead, libraryIndex) {
+        this.author = author;
+        this.title = title;
+        this.pageCount = pageCount;
+        this.isRead = isRead;
+        this.libraryIndex = libraryIndex;
+    }
 }
 
 function openBookDialog(e) {
