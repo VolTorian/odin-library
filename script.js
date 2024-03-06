@@ -13,12 +13,54 @@ bookForm.addEventListener("submit", submitBook);
 cancelAddBook.addEventListener("click", () => document.getElementById("book-dialog").close());
 
 class Book {
+    #author;
+    #title;
+    #pageCount;
+    #isRead;
+    #libraryIndex;
+
     constructor(author, title, pageCount, isRead, libraryIndex) {
-        this.author = author;
-        this.title = title;
-        this.pageCount = pageCount;
-        this.isRead = isRead;
-        this.libraryIndex = libraryIndex;
+        this.#author = author;
+        this.#title = title;
+        this.#pageCount = pageCount;
+        this.#isRead = isRead;
+        this.#libraryIndex = libraryIndex;
+    }
+
+    get author() {
+        return this.#author;
+    }
+
+    set author(author) {
+        this.#author = author;
+    }
+
+    get title() {
+        return this.#title;
+    }
+
+    set title(title) {
+        this.#title = title;
+    }
+
+    get pageCount() {
+        return this.#pageCount;
+    }
+
+    set pageCount(pageCount) {
+        this.#pageCount = pageCount;
+    }
+
+    get isRead() {
+        return this.#isRead;
+    }
+
+    set isRead(isRead) {
+        this.#isRead = isRead;
+    }
+
+    get libraryIndex() {
+        return this.#libraryIndex;
     }
 }
 
