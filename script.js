@@ -27,6 +27,68 @@ class Book {
         this.#libraryIndex = libraryIndex;
     }
 
+    createCard() {
+        this.containerCard = document.createElement("div");
+        this.containerCard.classList.add("card");
+        this.containerCard.id = this.libraryIndex;
+
+        this.cardTitle = document.createElement("div");
+        this.cardTitle.classList.add("title");
+        this.cardAuthor = document.createElement("div");
+        this.cardAuthor.classList.add("author");
+        this.cardPageCount = document.createElement("div");
+        this.cardPageCount.classList.add("page-count");
+        this.cardIsRead = document.createElement("div");
+        this.cardIsRead.classList.add("is-read");
+
+        this.cardTitle.textContent = this.title;
+        this.cardAuthor.textContent = this.author;
+        this.cardPageCount.textContent = this.pageCount;
+        if (this.isRead) {
+            this.cardIsRead.textContent = "Already read";
+        }
+        else {
+            this.cardIsRead.textContent = "Not yet read";
+        }
+
+        this.containerCard.appendChild(this.cardTitle);
+        this.containerCard.appendChild(this.cardAuthor);
+        this.containerCard.appendChild(this.cardPageCount);
+        this.containerCard.appendChild(this.cardIsRead);
+
+        this.cardControls = document.createElement("div");
+        this.cardControls.classList.add("card-controls");
+
+        this.toggleReadButton = document.createElement("img");
+        if (this.isRead) {
+            toggleReadButton.src = "./images/eye-remove-outline.svg";
+        }
+        else {
+            toggleReadButton.src = "./images/eye-check-outline.svg";
+        }
+    
+        this.toggleReadButton.addEventListener("click", this.toggleRead); //move global toggleRead function into Book class
+        this.toggleReadButton.classList.add("toggle-read");
+        this.cardControls.appendChild(this.toggleReadButton);
+    
+        this.editCardButton = document.createElement("img");
+        this.editCardButton.src = "./images/cog-outline.svg";
+        this.editCardButton.addEventListener("click", openBookDialog);
+        this.cardControls.appendChild(editCardButton);
+    
+        this.removeCardButton = document.createElement("img");
+        this.removeCardButton.src = "./images/delete-outline.svg";
+        this.removeCardButton.addEventListener("click", removeBook);
+        this.cardControls.appendChild(removeCardButton);
+    
+        this.containerCard.append(cardControls);
+        cardsDisplay.appendChild(newCard);
+    }
+
+    toggleRead() {
+        console.log("placeholder omegalul");
+    }
+
     get author() {
         return this.#author;
     }
@@ -107,7 +169,7 @@ function addBookToLibrary() {
     counter++;
 }
 
-function addBookCard(book) {
+function addBookCard(book) { //remove once card functionality has been moved into Book class
     const newCard = document.createElement("div");
     newCard.classList.add("card");
     newCard.id = book.libraryIndex;
