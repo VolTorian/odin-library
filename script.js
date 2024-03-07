@@ -67,7 +67,7 @@ class Book {
             toggleReadButton.src = "./images/eye-check-outline.svg";
         }
     
-        this.toggleReadButton.addEventListener("click", this.toggleRead); //move global toggleRead function into Book class
+        this.toggleReadButton.addEventListener("click", this.toggleRead);
         this.toggleReadButton.classList.add("toggle-read");
         this.cardControls.appendChild(this.toggleReadButton);
     
@@ -86,7 +86,16 @@ class Book {
     }
 
     toggleRead() {
-        console.log("placeholder omegalul");
+        if (this.isRead) {
+            this.toggleReadButton = "./images/eye-check-outline.svg";
+            this.cardIsRead.textContent = "Not yet read";
+            this.isRead = false;
+        }
+        else {
+            this.toggleReadButton = "./images/eye-remove-outline.svg";
+            this.cardIsRead.textContent = "Already read";
+            this.isRead = true;
+        }
     }
 
     get author() {
@@ -266,7 +275,7 @@ function removeBook(e) {
     bookCard.remove();
 }
 
-function toggleRead(e) {
+function toggleRead(e) { //remove once card functionality has been moved into Book class
     const bookCard = e.target.parentNode.parentNode;
     let cardIndex = bookCard.id;
     const cardIsRead = bookCard.querySelector(".is-read");
