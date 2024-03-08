@@ -85,6 +85,27 @@ class Book {
         cardsDisplay.appendChild(newCard);
     }
 
+    editBook() {
+        document.getElementById("book-dialog").close();
+        
+        this.title = document.getElementById("input-title").value;
+        this.author = document.getElementById("input-author").value;
+        this.pageCount = Math.floor(document.getElementById("input-page-count").value);
+        this.isRead = document.getElementById("input-is-read").checked;
+
+        this.cardTitle.textContent = this.title;
+        this.cardAuthor.textContent = this.author;
+        this.cardPageCount.textContent = this.pageCount;
+        if (this.isRead) {
+            this.cardIsRead.textContent = "Already read";
+            this.toggleReadButton.src = "./images/eye-remove-outline.svg";
+        }
+        else {
+            this.cardIsRead.textContent = "Not yet read";
+            this.toggleReadButton.src = "./images/eye-check-outline.svg";
+        }
+    }
+
     toggleRead() {
         if (this.isRead) {
             this.toggleReadButton = "./images/eye-check-outline.svg";
@@ -160,6 +181,7 @@ function submitBook() {
     }
     else if (submitType === "edit") {
         editBook(submitBookEditButton.value);
+        // myLibrary[submitBookEditButton.value].editBook();
     }
 }
 
@@ -243,7 +265,7 @@ function editBookPrefill(cardIndex) {
     document.getElementById("input-is-read").checked = myLibrary[cardIndex].isRead;
 }
 
-function editBook(cardIndex) {
+function editBook(cardIndex) { //remove once card functionality has been moved into Book class
     document.getElementById("book-dialog").close();
     const bookCard = document.getElementById(cardIndex);
     const toggleReadButton = bookCard.querySelector(".toggle-read");
