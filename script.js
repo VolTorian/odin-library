@@ -61,28 +61,28 @@ class Book {
 
         this.toggleReadButton = document.createElement("img");
         if (this.isRead) {
-            toggleReadButton.src = "./images/eye-remove-outline.svg";
+            this.toggleReadButton.src = "./images/eye-remove-outline.svg";
         }
         else {
-            toggleReadButton.src = "./images/eye-check-outline.svg";
+            this.toggleReadButton.src = "./images/eye-check-outline.svg";
         }
     
-        this.toggleReadButton.addEventListener("click", this.toggleRead);
+        this.toggleReadButton.addEventListener("click", this.toggleRead.bind(this));
         this.toggleReadButton.classList.add("toggle-read");
         this.cardControls.appendChild(this.toggleReadButton);
     
         this.editCardButton = document.createElement("img");
         this.editCardButton.src = "./images/cog-outline.svg";
         this.editCardButton.addEventListener("click", openBookDialog);
-        this.cardControls.appendChild(editCardButton);
+        this.cardControls.appendChild(this.editCardButton);
     
         this.removeCardButton = document.createElement("img");
         this.removeCardButton.src = "./images/delete-outline.svg";
         this.removeCardButton.addEventListener("click", removeBook);
-        this.cardControls.appendChild(removeCardButton);
+        this.cardControls.appendChild(this.removeCardButton);
     
-        this.containerCard.append(cardControls);
-        cardsDisplay.appendChild(newCard);
+        this.containerCard.append(this.cardControls);
+        cardsDisplay.appendChild(this.containerCard);
     }
 
     editBook() {
@@ -108,12 +108,12 @@ class Book {
 
     toggleRead() {
         if (this.isRead) {
-            this.toggleReadButton = "./images/eye-check-outline.svg";
+            this.toggleReadButton.src = "./images/eye-check-outline.svg";
             this.cardIsRead.textContent = "Not yet read";
             this.isRead = false;
         }
         else {
-            this.toggleReadButton = "./images/eye-remove-outline.svg";
+            this.toggleReadButton.src = "./images/eye-remove-outline.svg";
             this.cardIsRead.textContent = "Already read";
             this.isRead = true;
         }
@@ -316,6 +316,7 @@ function toggleRead(e) { //remove once card functionality has been moved into Bo
 }
 
 let firstBook = new Book("Orson Scott Card", "Ender's Game", "324", true, counter);
-addBookCard(firstBook);
+// addBookCard(firstBook);
+firstBook.createCard();
 myLibrary.push(firstBook);
 counter++;
