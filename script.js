@@ -158,18 +158,21 @@ class Book {
 
 function openBookDialog(e) {
     if (e.target.id === "add-book") {
+        console.log("adding");
         document.getElementById("dialog-header").textContent = "Enter a new book";
         submitBookAddButton.style.display = "inline-block";
         submitBookEditButton.style.display = "none";
         submitType = "add";
     }
     else {
+        console.log("editing");
         document.getElementById("dialog-header").textContent = "Edit book";
         submitBookAddButton.style.display = "none";
         submitBookEditButton.style.display = "inline-block";
         submitBookEditButton.value = e.target.parentNode.parentNode.id;
         submitType = "edit";
-        editBookPrefill(submitBookEditButton.value);
+        // editBookPrefill(submitBookEditButton.value);
+        editBookPrefill(myLibrary[submitBookEditButton.value]);
     }
     document.getElementById("book-dialog").showModal();
 }
@@ -180,8 +183,8 @@ function submitBook() {
         addBookToLibrary();
     }
     else if (submitType === "edit") {
-        editBook(submitBookEditButton.value);
-        // myLibrary[submitBookEditButton.value].editBook();
+        // editBook(submitBookEditButton.value);
+        myLibrary[submitBookEditButton.value].editBook();
     }
 }
 
@@ -258,11 +261,11 @@ function addBookCard(book) { //remove once card functionality has been moved int
     cardsDisplay.appendChild(newCard);
 }
 
-function editBookPrefill(cardIndex) {
-    document.getElementById("input-title").value = myLibrary[cardIndex].title;
-    document.getElementById("input-author").value = myLibrary[cardIndex].author;
-    document.getElementById("input-page-count").value = myLibrary[cardIndex].pageCount;
-    document.getElementById("input-is-read").checked = myLibrary[cardIndex].isRead;
+function editBookPrefill(book) {
+    document.getElementById("input-title").value = book.title;
+    document.getElementById("input-author").value = book.author;
+    document.getElementById("input-page-count").value = book.pageCount;
+    document.getElementById("input-is-read").checked = book.isRead;
 }
 
 function editBook(cardIndex) { //remove once card functionality has been moved into Book class
